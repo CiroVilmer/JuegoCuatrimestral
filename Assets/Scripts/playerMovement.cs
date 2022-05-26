@@ -6,7 +6,12 @@ public class playerMovement : MonoBehaviour
 {
     public float movementSpeed;
     public float rotationSpeed;
-    public GameObject trap;
+    public GameObject trapPrefab;
+    float playerPosX;
+    float playerPosY;
+    float playerPosZ;
+    public int trapLimit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +21,10 @@ public class playerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        playerPosX = this.transform.position.x;
+        playerPosY = this.transform.position.y;
+        playerPosZ = this.transform.position.z;
+
         if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(0, 0, movementSpeed);
@@ -38,9 +47,13 @@ public class playerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
-            GameObject trapClon = Instantiate(trap);
-            Destroy(trapClon, 2);
-            
+            while (trapLimit > 0)
+            {
+                GameObject trapClon = Instantiate(trapPrefab, new Vector3(playerPosX, 0.5f, playerPosZ), Quaternion.identity);
+                Destroy(trapClon, 10);
+                trapLimit--;
+                
+            }
             
         }
 
