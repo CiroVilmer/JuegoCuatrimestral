@@ -7,6 +7,8 @@ public class playerCollision : MonoBehaviour
 {
     public int nickleCount;
     public Text nickleCountUI;
+    public Text textTime;
+    float tiempo = 60;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +19,8 @@ public class playerCollision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        tiempo -= Time.deltaTime;
+        textTime.text = tiempo.ToString("f0");
     }
 
     void OnCollisionEnter(Collision col)
