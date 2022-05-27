@@ -21,6 +21,9 @@ public class playerCollision : MonoBehaviour
     {
         tiempo -= Time.deltaTime;
         textTime.text = tiempo.ToString("f0");
+
+
+        nickleCountUI.text = nickleCount.ToString();
     }
 
     void OnCollisionEnter(Collision col)
@@ -40,6 +43,7 @@ public class playerCollision : MonoBehaviour
         if(col.gameObject.name == "nickle")
         {
             nickleCount++;
+            
         }
     }
 }

@@ -52,7 +52,6 @@ public class playerMovement : MonoBehaviour
                 GameObject trapClon = Instantiate(trapPrefab, new Vector3(playerPosX, 0.5f, playerPosZ), Quaternion.identity);
                 Destroy(trapClon, 10);
                 trapLimit--;
-                
             }
             
         }
