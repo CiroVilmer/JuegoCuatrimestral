@@ -10,7 +10,7 @@ public class playerMovement : MonoBehaviour
     float playerPosX;
     float playerPosY;
     float playerPosZ;
-    public int trapLimit;
+    public static int trapLimit;
 
     // Start is called before the first frame update
     void Start()

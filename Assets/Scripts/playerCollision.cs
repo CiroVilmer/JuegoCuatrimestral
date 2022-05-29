@@ -6,15 +6,10 @@ using UnityEngine.UI;
 public class playerCollision : MonoBehaviour
 {
     public int nickleCount;
-    public Text nickleCountUI;
+    //public Text nickleCountUI;
     public Text textTime;
     float tiempo = 60;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Text gameOver;
 
     // Update is called once per frame
     void Update()
@@ -22,8 +17,6 @@ public class playerCollision : MonoBehaviour
         tiempo -= Time.deltaTime;
         textTime.text = tiempo.ToString("f0");
 
-
-        nickleCountUI.text = nickleCount.ToString();
     }
 
     void OnCollisionEnter(Collision col)
@@ -31,8 +24,7 @@ public class playerCollision : MonoBehaviour
 
         if (col.gameObject.name == "DeathWall")
         {
-            //Destroy(gameObject);
-            transform.position = new Vector3(0, 0.6f, 0);
+            playerDeath();
         }
 
         if (col.gameObject.name == "caida")
@@ -45,5 +37,21 @@ public class playerCollision : MonoBehaviour
             nickleCount++;
             
         }
+
+        if(col.gameObject.name == "bulletPrefab(Clone)")
+        {
+            playerDeath();
+        }
+
+        if(col.gameObject.name == "uper")
+        {
+            playerMovement.trapLimit++;
+        }
+    }
+
+    public void playerDeath()
+    {
+        Destroy(gameObject);
+        
     }
 }
