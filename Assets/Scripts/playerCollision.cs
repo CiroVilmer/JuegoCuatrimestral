@@ -6,17 +6,30 @@ using UnityEngine.UI;
 public class playerCollision : MonoBehaviour
 {
     public int nickleCount;
-    //public Text nickleCountUI;
     public Text textTime;
     float tiempo = 60;
     public Text gameOver;
-
-    // Update is called once per frame
+    bool keyOnPlayer = false;
+    public Text levelComplete;
+    
+    void Start()
+    {
+        gameOver.enabled = false;
+        levelComplete.enabled = false;
+    }
+    
     void Update()
     {
         tiempo -= Time.deltaTime;
-        textTime.text = tiempo.ToString("f0");
 
+        if(tiempo < 0)
+        {
+            playerDeath();
+        }
+        else
+        {
+            textTime.text = tiempo.ToString("f0");
+        }
     }
 
     void OnCollisionEnter(Collision col)
@@ -47,11 +60,35 @@ public class playerCollision : MonoBehaviour
         {
             playerMovement.trapLimit++;
         }
+
+        if(col.gameObject.name == "Trap")
+        {
+            playerDeath();
+        }
+
+        if(col.gameObject.name == "key")
+        {
+            keyOnPlayer = true;
+        }
+
+        if(col.gameObject.name == "Door")
+        {
+            if(keyOnPlayer == true)
+            {
+                levelComplete.enabled = true;
+                playerDeath();
+            }
+        }
+
+        if(col.gameObject.name == "Cheese")
+        {
+            tiempo += 10;
+        }
     }
 
     public void playerDeath()
     {
         Destroy(gameObject);
-        
+        gameOver.enabled = true;
     }
 }

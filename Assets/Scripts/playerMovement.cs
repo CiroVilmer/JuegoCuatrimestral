@@ -10,15 +10,10 @@ public class playerMovement : MonoBehaviour
     float playerPosX;
     float playerPosY;
     float playerPosZ;
-    public static int trapLimit;
+    public static int trapLimit = 3;
+    float trapRateDelta;
+    public float trapRate = 1f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         playerPosX = this.transform.position.x;
@@ -49,11 +44,15 @@ public class playerMovement : MonoBehaviour
         {
             while (trapLimit > 0)
             {
-                GameObject trapClon = Instantiate(trapPrefab, new Vector3(playerPosX, 0.5f, playerPosZ), Quaternion.identity);
-                Destroy(trapClon, 10);
-                trapLimit--;
+               trapRateDelta -= Time.deltaTime;
+                if (trapRateDelta <= 0)
+                {
+                    GameObject trapClon = Instantiate(trapPrefab, new Vector3(playerPosX, playerPosY, playerPosZ), Quaternion.identity);
+                    Destroy(trapClon, 10);
+                    trapLimit--;
+                    trapRateDelta = trapRate;
+                }
             }
-            
         }
 
     }

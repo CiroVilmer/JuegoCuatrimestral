@@ -8,19 +8,8 @@ public class turretShoot : MonoBehaviour
     float rateOfFire = 1f;
     float fireRateDelta;
 
-
-    // Update is called once per frame
     void Update()
     {
-        /*GameObject clon;
-
-        clon = Instantiate(bulletPrefab);
-
-        Destroy(clon, 4);
-
-        clon.transform.position = transform.position;
-        */
-
         fireRateDelta -= Time.deltaTime;
         if (fireRateDelta <= 0)
         {
@@ -28,9 +17,6 @@ public class turretShoot : MonoBehaviour
             fireRateDelta = rateOfFire;
         }
         
-
-
-
     }
 
     public void Fire()
