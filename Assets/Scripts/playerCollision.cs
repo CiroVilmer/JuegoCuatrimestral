@@ -11,7 +11,9 @@ public class playerCollision : MonoBehaviour
     public Text gameOver;
     bool keyOnPlayer = false;
     public Text levelComplete;
-    
+    public int cheeseTime = 10;
+    public Text txtWarnings;
+
     void Start()
     {
         gameOver.enabled = false;
@@ -78,11 +80,20 @@ public class playerCollision : MonoBehaviour
                 levelComplete.enabled = true;
                 playerDeath();
             }
+            else
+            {
+                txtWarnings.text = "No tenes la llave";
+            }
         }
 
-        if(col.gameObject.name == "Cheese")
+        if(col.gameObject.name == "cheese")
         {
-            tiempo += 10;
+            tiempo += cheeseTime;
+        }
+
+        if(col.gameObject.name == "manzana(Clone)")
+        {
+            playerDeath();
         }
     }
 
