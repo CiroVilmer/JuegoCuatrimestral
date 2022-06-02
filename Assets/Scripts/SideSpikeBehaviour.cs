@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class spikeBehaviour : MonoBehaviour
+public class SideSpikeBehaviour : MonoBehaviour
 {
 
-    float y;
+    float x;
     float UpSpikeSpeed = 0.03f;
     float DownSpikeSpeed = 0.02f;
     bool upFinished = false;
@@ -13,27 +13,26 @@ public class spikeBehaviour : MonoBehaviour
     void Update()
     {
 
-        y = this.transform.position.y;
+        x = this.transform.position.x;
 
-        if(y >= 0.2f)
+        if (x >= x+1)
         {
             upFinished = true;
         }
-        if(y <= -1.5f)
+        if (x <= -x+5)
         {
             upFinished = false;
         }
 
-        if(upFinished == false)
+        if (upFinished == false)
         {
-            transform.position += new Vector3(0, UpSpikeSpeed, 0);
+            transform.position += new Vector3(-UpSpikeSpeed, 0, 0);
         }
 
         if (upFinished == true)
         {
-            transform.position += new Vector3(0, -DownSpikeSpeed, 0);
+            transform.position += new Vector3(DownSpikeSpeed, 0, 0);
         }
 
     }
-
 }

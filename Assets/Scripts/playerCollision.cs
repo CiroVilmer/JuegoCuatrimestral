@@ -95,6 +95,11 @@ public class playerCollision : MonoBehaviour
         {
             playerDeath();
         }
+
+        if(col.gameObject.name == "spike")
+        {
+            playerDeath();
+        }
     }
 
     public void playerDeath()
