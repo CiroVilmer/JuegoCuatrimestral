@@ -7,9 +7,7 @@ public class playerMovement : MonoBehaviour
     public float movementSpeed;
     public float rotationSpeed;
     public GameObject trapPrefab;
-    float playerPosX;
-    float playerPosY;
-    float playerPosZ;
+    float playerPosX, playerPosY, playerPosZ;
     public static int trapLimit = 3;
     float trapRateDelta;
     public float trapRate = 1f;
@@ -40,7 +38,7 @@ public class playerMovement : MonoBehaviour
             transform.Rotate(0, -rotationSpeed, 0);
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Q))
         {
             while (trapLimit > 0)
             {

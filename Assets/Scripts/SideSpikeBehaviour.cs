@@ -5,34 +5,40 @@ using UnityEngine;
 public class SideSpikeBehaviour : MonoBehaviour
 {
 
-    float x;
-    float UpSpikeSpeed = 0.03f;
-    float DownSpikeSpeed = 0.02f;
+    float xInicial;
+    float xActual;
+    float xFinal;
+    float spikeSpeed = 0.03f;
     bool upFinished = false;
+
+    void Start()
+    {
+        xInicial = this.transform.position.x;
+        xFinal = xInicial - 1;
+    }
 
     void Update()
     {
-
-        x = this.transform.position.x;
-
-        if (x >= x+1)
-        {
-            upFinished = true;
-        }
-        if (x <= -x+5)
-        {
-            upFinished = false;
-        }
+        xActual = this.transform.position.x;
 
         if (upFinished == false)
         {
-            transform.position += new Vector3(-UpSpikeSpeed, 0, 0);
+            transform.Translate(-spikeSpeed, 0, 0);
         }
 
-        if (upFinished == true)
+        if (xActual <= xFinal)
         {
-            transform.position += new Vector3(DownSpikeSpeed, 0, 0);
+            upFinished = true;
         }
 
+        if(upFinished == true)
+        {
+            transform.Translate(spikeSpeed, 0, 0);
+        }
+
+        if(xActual >= xInicial+1)
+        {
+            upFinished = false;
+        }
     }
 }

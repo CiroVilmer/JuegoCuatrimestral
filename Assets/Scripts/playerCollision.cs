@@ -10,14 +10,12 @@ public class playerCollision : MonoBehaviour
     float tiempo = 60;
     public Text gameOver;
     bool keyOnPlayer = false;
-    public Text levelComplete;
     public int cheeseTime = 10;
     public Text txtWarnings;
 
     void Start()
     {
         gameOver.enabled = false;
-        levelComplete.enabled = false;
     }
     
     void Update()
@@ -77,13 +75,18 @@ public class playerCollision : MonoBehaviour
         {
             if(keyOnPlayer == true)
             {
-                levelComplete.enabled = true;
+                gameOver.text = "Ganaste!!!";
                 playerDeath();
             }
             else
             {
                 txtWarnings.text = "No tenes la llave";
             }
+        }
+
+        if(keyOnPlayer == true)
+        {
+            txtWarnings.text = "Tenes la llave!";
         }
 
         if(col.gameObject.name == "cheese")

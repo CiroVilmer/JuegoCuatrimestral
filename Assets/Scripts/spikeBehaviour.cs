@@ -26,12 +26,12 @@ public class spikeBehaviour : MonoBehaviour
 
         if(upFinished == false)
         {
-            transform.position += new Vector3(0, UpSpikeSpeed, 0);
+            transform.Translate(0, UpSpikeSpeed, 0);
         }
 
         if (upFinished == true)
         {
-            transform.position += new Vector3(0, -DownSpikeSpeed, 0);
+            transform.Translate(0, -DownSpikeSpeed, 0);
         }
 
     }
