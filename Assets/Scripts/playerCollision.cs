@@ -7,24 +7,33 @@ public class playerCollision : MonoBehaviour
 {
     public int nickleCount;
     public Text textTime;
-    float tiempo = 60;
+    public GameObject restart;
+    float tiempo = 10;
     public Text gameOver;
     bool keyOnPlayer = false;
     public int cheeseTime = 10;
     public Text txtWarnings;
+    Vector3 spawn;
+    public Text txtVida;
+    public float vida = 3;
+
 
     void Start()
     {
+
         gameOver.enabled = false;
+        spawn = this.transform.position; 
     }
     
     void Update()
     {
         tiempo -= Time.deltaTime;
 
+        txtVida.text = "Vidas restantes:"+ vida;
+
         if(tiempo < 0)
         {
-            playerDeath();
+            GameOver();
         }
         else
         {
@@ -103,11 +112,26 @@ public class playerCollision : MonoBehaviour
         {
             playerDeath();
         }
+
+        if (vida == 0)
+        {
+            GameOver();
+        }
+
     }
 
     public void playerDeath()
     {
-        Destroy(gameObject);
+        transform.position = spawn;
+        vida--;
+     //   Destroy(gameObject);
+        
+    }
+
+    public void GameOver()
+    {
+        restart.SetActive(true);
         gameOver.enabled = true;
+        Time.timeScale = 0;
     }
 }
