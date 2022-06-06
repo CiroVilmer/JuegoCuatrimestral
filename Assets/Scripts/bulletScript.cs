@@ -10,4 +10,12 @@ public class bulletScript : MonoBehaviour
     {
         transform.Translate(new Vector3(0f, 0f, projectileSpeed * Time.deltaTime));
     }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.name == "wall")
+        {
+            Destroy(gameObject);
+        }
+    }
 }

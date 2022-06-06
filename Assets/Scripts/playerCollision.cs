@@ -7,8 +7,9 @@ public class playerCollision : MonoBehaviour
 {
     public int nickleCount;
     public Text textTime;
-    public GameObject restart;
-    float tiempo = 10;
+    public GameObject restartBTN;
+    public GameObject continueBTN;
+    float tiempo = 60;
     public Text gameOver;
     bool keyOnPlayer = false;
     public int cheeseTime = 10;
@@ -22,7 +23,8 @@ public class playerCollision : MonoBehaviour
     {
 
         gameOver.enabled = false;
-        spawn = this.transform.position; 
+        spawn = this.transform.position;
+        Time.timeScale = 1;
     }
     
     void Update()
@@ -85,6 +87,7 @@ public class playerCollision : MonoBehaviour
             if(keyOnPlayer == true)
             {
                 gameOver.text = "Ganaste!!!";
+                continueBTN.SetActive(true);
                 playerDeath();
             }
             else
@@ -130,7 +133,7 @@ public class playerCollision : MonoBehaviour
 
     public void GameOver()
     {
-        restart.SetActive(true);
+        restartBTN.SetActive(true);
         gameOver.enabled = true;
         Time.timeScale = 0;
     }
