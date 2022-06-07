@@ -18,25 +18,32 @@ public class playerMovement : MonoBehaviour
         playerPosY = this.transform.position.y;
         playerPosZ = this.transform.position.z;
 
-        if (Input.GetKey(KeyCode.W))
+        if(Time.timeScale == 1)
         {
-            transform.Translate(0, 0, movementSpeed);
+            if (Input.GetKey(KeyCode.W))
+            {
+                transform.Translate(0, 0, movementSpeed);
+            }
+
+            if (Input.GetKey(KeyCode.S))
+            {
+                transform.Translate(0, 0, -movementSpeed);
+            }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.Rotate(0, rotationSpeed, 0);
+            }
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.Rotate(0, -rotationSpeed, 0);
+            }
         }
 
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(0, 0, -movementSpeed);
-        }
+        
 
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Rotate(0, rotationSpeed, 0);
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Rotate(0, -rotationSpeed, 0);
-        }
+        /*
 
         if (Input.GetKey(KeyCode.Q))
         {
@@ -53,5 +60,6 @@ public class playerMovement : MonoBehaviour
             }
         }
 
+    */
     }
 }

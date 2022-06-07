@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class playerCollision : MonoBehaviour
 {
-    public int nickleCount;
+    public static int nickleCount;
     public Text textTime;
     public GameObject restartBTN;
     public GameObject continueBTN;
-    float tiempo = 60;
+    public float tiempo = 60;
     public Text gameOver;
     bool keyOnPlayer = false;
     public int cheeseTime = 10;
@@ -17,6 +17,8 @@ public class playerCollision : MonoBehaviour
     Vector3 spawn;
     public Text txtVida;
     public float vida = 3;
+    public GameObject bridgePrefab;
+    bool lvl1 = true;
 
 
     void Start()
@@ -24,6 +26,7 @@ public class playerCollision : MonoBehaviour
 
         gameOver.enabled = false;
         spawn = this.transform.position;
+
         Time.timeScale = 1;
     }
     
@@ -88,7 +91,7 @@ public class playerCollision : MonoBehaviour
             {
                 gameOver.text = "Ganaste!!!";
                 continueBTN.SetActive(true);
-                playerDeath();
+                Time.timeScale = 0;
             }
             else
             {
@@ -116,18 +119,34 @@ public class playerCollision : MonoBehaviour
             playerDeath();
         }
 
-        if (vida == 0)
+        if(col.gameObject.name == "plate")
         {
-            GameOver();
+            if(nickleCount >= 4)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                  
+                    Instantiate(bridgePrefab, new Vector3(0, 0, -12 - i), Quaternion.identity);
+                }
+            }
+            else
+            {
+                txtWarnings.text = "NECESITAS 4 MONEDAS PARA ACTIVAR EL PUENTE";
+            }
         }
-
     }
 
     public void playerDeath()
     {
-        transform.position = spawn;
-        vida--;
-     //   Destroy(gameObject);
+        if(vida == 1)
+        {
+            GameOver();
+        }
+        else
+        {
+            transform.position = spawn;
+            vida--;
+        }
         
     }
 

@@ -12,7 +12,12 @@ public class nickleBehaviour : MonoBehaviour
     {
         nicklePosY = this.transform.position.y;
 
-        transform.Rotate(0, rotationSpeed, 0);
+        if(Time.timeScale == 1)
+        {
+            transform.Rotate(0, rotationSpeed, 0);
+        }
+
+        
 
     }
 

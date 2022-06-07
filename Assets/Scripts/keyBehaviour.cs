@@ -12,8 +12,10 @@ public class keyBehaviour : MonoBehaviour
     {
         keyPosY = this.transform.position.y;
 
-        transform.Rotate(0, rotationSpeed, 0);
-
+        if(Time.timeScale == 1)
+        {
+            transform.Rotate(0, rotationSpeed, 0);
+        }
     }
 
     void OnCollisionEnter(Collision col)

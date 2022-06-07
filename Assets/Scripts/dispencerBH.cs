@@ -5,7 +5,7 @@ using UnityEngine;
 public class dispencerBH : MonoBehaviour
 {
     public GameObject itemPrefab;
-    public float rateOfFire = 1f;
+    public float rateOfFire = 3f;
     float fireRateDelta;
 
     void Update()
