@@ -16,9 +16,9 @@ public class playerCollision : MonoBehaviour
     public Text txtWarnings;
     Vector3 spawn;
     public Text txtVida;
+    public Text txtBtn;
     public float vida = 3;
     public GameObject bridgePrefab;
-    bool lvl1 = true;
 
 
     void Start()
@@ -63,6 +63,7 @@ public class playerCollision : MonoBehaviour
         {
             nickleCount++;
             
+            
         }
 
         if(col.gameObject.name == "bulletPrefab(Clone)")
@@ -89,9 +90,23 @@ public class playerCollision : MonoBehaviour
         {
             if(keyOnPlayer == true)
             {
-                gameOver.text = "Ganaste!!!";
-                continueBTN.SetActive(true);
-                Time.timeScale = 0;
+                if (restartBtn.lastLvl == true)
+                {
+                    gameOver.text = "Terminaste el juego!!";
+                    gameOver.enabled = true;
+                    continueBTN.SetActive(true);
+                    txtBtn.text = "Volver a intentar";
+                    Time.timeScale = 0;
+                }
+                else
+                {
+                    gameOver.text = "Ganaste!!!";
+                    gameOver.enabled = true;
+                    continueBTN.SetActive(true);
+                    Time.timeScale = 0;
+                }
+
+                
             }
             else
             {
@@ -121,7 +136,7 @@ public class playerCollision : MonoBehaviour
 
         if(col.gameObject.name == "plate")
         {
-            if(nickleCount >= 4)
+            if(coinDestroyer.countercoin >= 4)
             {
                 for (int i = 0; i < 10; i++)
                 {
