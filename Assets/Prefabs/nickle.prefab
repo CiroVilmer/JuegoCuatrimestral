@@ -105,3 +105,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 1
+  coinSound: {fileID: 4892655174104038409, guid: 0cffb02836f0fa24e882846aa800e6a1,
+    type: 3}

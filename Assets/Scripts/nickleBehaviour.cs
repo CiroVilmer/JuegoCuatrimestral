@@ -8,6 +8,8 @@ public class nickleBehaviour : MonoBehaviour
 
     float nicklePosY;
 
+    public GameObject coinSound;
+
     void Update()
     {
         nicklePosY = this.transform.position.y;
@@ -27,6 +29,10 @@ public class nickleBehaviour : MonoBehaviour
         {
             coinDestroyer.countercoin++;
             Destroy(gameObject);
+
+            GameObject clon = Instantiate(coinSound);
+            Destroy(clon, 3);
+
         }
     }
 

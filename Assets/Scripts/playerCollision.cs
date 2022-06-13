@@ -19,6 +19,8 @@ public class playerCollision : MonoBehaviour
     public Text txtBtn;
     public float vida = 3;
     public GameObject bridgePrefab;
+    public GameObject winSound;
+    
 
 
     void Start()
@@ -59,12 +61,7 @@ public class playerCollision : MonoBehaviour
             transform.position = new Vector3(0, 0.6f, 0);
         }
 
-        if(col.gameObject.name == "nickle")
-        {
-            nickleCount++;
-            
-            
-        }
+        
 
         if(col.gameObject.name == "bulletPrefab(Clone)")
         {
@@ -97,6 +94,8 @@ public class playerCollision : MonoBehaviour
                     continueBTN.SetActive(true);
                     txtBtn.text = "Volver a intentar";
                     Time.timeScale = 0;
+
+                    
                 }
                 else
                 {
@@ -106,7 +105,8 @@ public class playerCollision : MonoBehaviour
                     Time.timeScale = 0;
                 }
 
-                
+                GameObject clon = Instantiate(winSound);
+                Destroy(clon, 3);
             }
             else
             {
